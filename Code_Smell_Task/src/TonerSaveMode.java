@@ -2,40 +2,24 @@ public class TonerSaveMode extends PrintMode{
     String tonerSavingLevel;
 
     @Override
-    public void saveToner() {
-        if(getTonerSavingLevel()>10)
-            reduceColorIntensity();
+    public void printModeAlgo() {
+        super.printModeAlgo();
     }
 
-    public void reduceColorIntensity()
+    public void changeColorIntensity()
     {
-        setColor_intensity(getColor_intensity()-10);
-    }
+        ColorIntensity colorIntensity;
 
-    public void reduceColorIntensity_basedOnTonerSavingLevel()
-    {
-        if(canColorIntensityReduced())
-        {
-            colorIntensityReduceAlgo1();
-            colorIntensityReduceAlgo2();
-        }
-    }
-
-    boolean canColorIntensityReduced()
-    {
-        if((tonerSavingLevel=="medium")||(tonerSavingLevel=="high"))
-            return true;
+        if(tonerSavingLevel=="high")
+            colorIntensity = new HighColorIntensity(tonerSavingLevel);
+        else if(tonerSavingLevel=="medium")
+            colorIntensity = new MediumColorIntensity(tonerSavingLevel);
         else
-            return false;
+            colorIntensity = new LowColorIntensity(tonerSavingLevel);
+
+        colorIntensity.reduceColorIntensity_basedOnTonerSavingLevel();
     }
 
-    public void colorIntensityReduceAlgo1()
-    {
 
-    }
-    public void colorIntensityReduceAlgo2()
-    {
-
-    }
 
 }

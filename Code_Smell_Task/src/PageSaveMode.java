@@ -1,7 +1,8 @@
 public class PageSaveMode extends PrintMode{
+
     @Override
-    public void savePage() {
-        super.savePage();
+    public void printModeAlgo() {
+        super.printModeAlgo();
     }
 
     public void renderPreview()
